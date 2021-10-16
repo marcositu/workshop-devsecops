@@ -1,0 +1,35 @@
+pipeline {
+    agent any
+    stages {
+        stage('Crearproducto') {
+            steps {
+                sh '''
+                    /home/demos/demos/crear_producto.sh
+                '''
+            }
+        }
+        stage('Crearengagement') {
+            steps {
+                sh '''
+                    /home/demos/demos/crear_engagement.sh
+                '''
+            }
+        }
+		stage('ScanSonarqube') {
+            steps {
+                sh '''
+                    /home/demos/demos/scansonarqube.sh
+                '''
+            }
+        }
+		
+	    stage('ScanOwaspzap') {
+            steps {
+                sh '''
+                    /home/demos/demos/scan_zap.sh
+                '''
+            }
+        }
+		
+    }
+}
