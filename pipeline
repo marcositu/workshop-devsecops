@@ -1,35 +1,101 @@
+properties([
+    parameters([
+		string(defaultValue: '', description: 'DefectKey', name: 'DefectKey'),
+        string(defaultValue: '', description: 'SonarKey', name: 'SonarKey'),
+		string(defaultValue: '', description: 'URLDVWA', name: 'URLDVWA')
+    ]),
+    pipelineTriggers([])
+])
+
+
 pipeline {
     agent any
     stages {
         stage('Crearproducto') {
             steps {
                 sh '''
-                    /home/demos/demos/crear_producto.sh
-                '''
+                    curl -s -X 'POST' -H "Authorization: Token ${DefectKey}" \
+                      'http://localhost:8082/api/v2/products/' \
+                      -H 'accept: application/json' \
+                      -H 'Content-Type: application/json' \
+                      -d '{
+                      "name": "demos",
+                      "external_audience": true,
+                      "prod_type": "1",
+                      "description": "prueba producto"
+                    }'                    
+				  '''
             }
         }
         stage('Crearengagement') {
             steps {
                 sh '''
-                    /home/demos/demos/crear_engagement.sh
-                '''
+    				PROYECTO=`curl -X 'GET' 'http://localhost:8082/api/v2/products/' -H 'accept: application/json' -H "Authorization: Token ${DefectKey}" -s | jq '.results[] | select(.name=="demos") | .id'`
+        				curl -X 'POST' -H "Authorization: Token ${DefectKey}" \
+    				  'http://localhost:8082/api/v2/engagements/' \
+    				  -H 'accept: application/json' \
+    				  -H 'Content-Type: application/json' \
+    				  -d '{
+    				  "name": "demosEng",
+    				  "target_start": "2021-10-15",
+    				  "target_end": "2021-10-31",
+    				  "test_strategy": "",
+    				  "deduplication_on_engagement": "on",
+    				  "lead": "1",
+    				  "product": "'"$PROYECTO"'"
+    				}'
+				'''
             }
         }
-		stage('ScanSonarqube') {
+        
+        stage('ScanSonarqube') {
             steps {
                 sh '''
-                    /home/demos/demos/scansonarqube.sh
+					cd /home/demos/demos
+					git clone https://github.com/digininja/DVWA
+					cd DVWA
+					curl --include --request POST --header "Content-Type: application/x-www-form-urlencoded" -u "${SonarKey}:" -d 'project=demos&organization=demos&name=demos' 'http://localhost:9000/api/projects/create'
+					/home/demos/Descargas/sonar-scanner-cli-4.6.2.2472-linux/sonar-scanner-4.6.2.2472-linux/bin/sonar-scanner \
+					  -Dsonar.projectKey=demos \
+					  -Dsonar.sources=. \
+					  -Dsonar.host.url=http://localhost:9000 \
+					  -Dsonar.login=${SonarKey}
+					sleep 10					
+					PROYECTO=`curl -X 'GET' 'http://localhost:8082/api/v2/products/' -H 'accept: application/json' -H "Authorization: Token ${DefectKey}" -s | jq '.results[] | select(.name=="demos") | .id'`
+					ENGA=`curl -X 'GET' http://localhost:8082/api/v2/engagements/?product=${PROYECTO} -H 'accept: application/json' -H "Authorization: Token ${DefectKey}" -s | jq '.results[] | select(.name=="demosEng") | .id'`
+					sleep 30
+					curl --location --request POST 'http://localhost:8082/api/v2/import-scan/' \
+					--header "Authorization: Token ${DefectKey}" \
+					--form 'engagement="'"$ENGA"'"' \
+					--form 'verified=true' \
+					--form 'active=true' \
+					--form 'scan_type=SonarQube API Import'
+
                 '''
             }
         }
-		
-	    stage('ScanOwaspzap') {
+        
+         stage('ScanOwaspzap') {
             steps {
                 sh '''
-                    /home/demos/demos/scan_zap.sh
-                '''
+					DIA=`date +"%d-%m-%Y"`
+					REPORTE="scan_zap"
+					docker run --rm --name scan_zap -v /home/demos/demos/:/zap/wrk/:rw -t owasp/zap2docker-stable zap-full-scan.py -t ${URLDVWA} -T 3 -m 1 -x ${REPORTE}${DIA}.xml -r ${REPORTE}${DIA}.html
+					PROYECTO=`curl -X 'GET' 'http://localhost:8082/api/v2/products/' -H 'accept: application/json' -H "Authorization: Token ${DefectKey}" -s | jq '.results[] | select(.name=="demos") | .id'`
+					ENGA=`curl -X 'GET' http://localhost:8082/api/v2/engagements/?product=${PROYECTO} -H 'accept: application/json' -H "Authorization: Token ${DefectKey}" -s | jq '.results[] | select(.name=="demosEng") | .id'`
+					cd "/home/demos/demos/"
+					curl --location --request POST 'http://localhost:8082/api/v2/import-scan/' \
+					--header "Authorization: Token ${DefectKey}" \
+					--form 'engagement="'"$ENGA"'"' \
+					--form 'verified=true' \
+					--form 'active=true' \
+					--form 'scan_type=ZAP Scan' \
+					--form 'file=@"'"$REPORTE$DIA.xml"'"'
+				'''
             }
         }
+        
 		
-    }
+
+	    }
 }
