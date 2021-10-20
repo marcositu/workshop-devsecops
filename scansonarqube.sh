@@ -1,4 +1,6 @@
 #!/bin/bash
+# Realiza el SCAN con SonarQube
+
 cd /home/demos/demos
 git clone https://github.com/digininja/DVWA
 cd DVWA
