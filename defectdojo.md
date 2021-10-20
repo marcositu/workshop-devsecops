@@ -11,5 +11,7 @@ Recomendamos modificar el puerto 8080 por 8082 como también agregar el parámet
 *restart: always*
 
 `docker-compose build`
+
 `docker-compose up -d`
+
 `docker-compose logs initializer | grep "Admin password:"`
