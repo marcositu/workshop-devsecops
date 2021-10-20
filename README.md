@@ -20,6 +20,9 @@ Mediante la utilización de diferentes herramientas open-source, que permiten re
 # defectdojo.md
 * Nos da los comandos para iniciar un container de DefectDojo, donde vamos a poder administrar diferentes SCANS de las herramientas que fuimos ejecutando.
 
+# owaspzap.md
+* Tiene el comando para descargar la imagen de docker de OWASP ZAP
+
 # crear_producto.sh
 * Crea un producto dentro de DefectDojo
 
