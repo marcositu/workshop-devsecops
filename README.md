@@ -15,3 +15,18 @@ Mediante la utilización de diferentes herramientas open-source, que permiten re
 # defectdojo.md
 * Nos da los comandos para iniciar un container de DefectDojo, donde vamos a poder administrar diferentes SCANS de las herramientas que fuimos ejecutando.
 
+# crear_producto.sh
+* Crea un producto dentro de DefectDojo
+
+# crear_engagement.sh
+* Crea un engagement dentro de un producto en DefectDojo
+
+# scan_zap.sh
+* Realiza un scan del tipo DAST con OWASP ZAP y el resultado lo importa en DefectDojo
+
+# scansonarqube.sh
+* Realiza un scan del tipo SAST con SonarQube y el resultado lo importa en DefectDojo
+
+# pipeline
+* Contiene el scrip para ejecutar el pipeline
+
