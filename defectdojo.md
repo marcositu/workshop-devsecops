@@ -1,5 +1,6 @@
-# Comandos para iniciar un contenedor de docker de DefectDojo 
+# Comandos para iniciar un contenedor de docker de DefectDojo (Centraliza las vulnerabilidades identificadas)
 `git clone https://github.com/DefectDojo/django-DefectDojo`
+
 `cd django-DefectDojo`
 
 Recomendamos modificar el puerto 8080 por 8082 como también agregar el parámetro "restart" dentro del archivo docker-compose.yml.
