@@ -1,4 +1,4 @@
-# Comandos para instalar Jenknis de forma local
+# Comandos para instalar Jenknis (es un servidor automatizado de integración continua) de forma local
 
 `wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -`
 
