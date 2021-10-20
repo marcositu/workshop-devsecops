@@ -33,5 +33,5 @@ Mediante la utilización de diferentes herramientas open-source, que permiten re
 * Realiza un scan del tipo SAST con SonarQube y el resultado lo importa en DefectDojo
 
 # pipeline
-* Contiene el scrip para ejecutar el pipeline
+* Contiene el script para ejecutar el pipeline
 
