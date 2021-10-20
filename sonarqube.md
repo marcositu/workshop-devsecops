@@ -1,4 +1,4 @@
-# Comandos para iniciar un contenedor de docker de Sonarqube 
+# Comandos para iniciar un contenedor de docker de Sonarqube (Realiza el análisis SAST)
 `curl -sSL https://raw.githubusercontent.com/bitnami/bitnami-docker-sonarqube/master/docker-compose.yml > docker-compose.yml`
 
 `sysctl -w vm.max_map_count=262144`
