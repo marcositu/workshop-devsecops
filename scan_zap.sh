@@ -1,4 +1,6 @@
 #!/bin/bash
+# Realiza el SCAN con OWASP ZAP a la WEB http://172.17.0.1:8081/
+
 TARGET_URL="http://172.17.0.1:8081/" 
 DIA=`date +"%d-%m-%Y"`
 REPORTE="scan_zap"
