@@ -14,6 +14,6 @@ Recomendamos agregar el siguiente parámetro dentro del archivo docker-compose.y
 
 `unzip sonar-scanner-cli-4.6.2.2472-linux.zip`
 
-`echo "export /home/demos/Descargas/sonar-scanner-cli-4.6.2.2472-linux/sonar-scanner-4.6.2.2472-linux/bin:$PATH" >> ~/.bashrc`
+`echo 'export PATH="/home/demos/Descargas/sonar-scanner-cli-4.6.2.2472-linux/sonar-scanner-4.6.2.2472-linux/bin:$PATH"' >> ~/.bashrc`
 
 `source ~/.bashrc`
