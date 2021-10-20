@@ -24,3 +24,5 @@
 `sudo chmod 666 /var/run/docker.sock`
 
 `/etc/init.d/docker restart`
+
+`sudo apt install docker-compose`
