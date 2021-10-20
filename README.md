@@ -3,6 +3,9 @@ La intención de la workshop es mostrar y orientar a los equipos de desarrollo, 
 
 Mediante la utilización de diferentes herramientas open-source, que permiten realizar análisis del tipo SAST y DAST de forma totalmente automatizada en la infraestructura de la organización Logrando así reducir los tiempos durante las diferentes etapas (desarrollo,prueba y producción), tiempos de análisis y trazabilidad en cada una de las iteraciones.
 
+# docker.md
+* Nos da los comandos para instalar docker
+
 # jenkis.md
 * Este archivo contiene los comandos para instalar jenkis
 
