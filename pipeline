@@ -1,7 +1,7 @@
 properties([
     parameters([
 	string(defaultValue: '', description: 'DefectKey', name: 'DefectKey'),
-        string(defaultValue: '', description: 'SonarKey', name: 'SonarKey'),
+    string(defaultValue: '', description: 'SonarKey', name: 'SonarKey'),
     ]),
     pipelineTriggers([])
 ])
@@ -12,8 +12,9 @@ pipeline {
     stages {
         stage('Crearproducto') {
             steps {
+                withCredentials([string(credentialsId: 'defect', variable: 'defect')]) {
                 sh '''
-                    curl -s -X 'POST' -H "Authorization: Token ${DefectKey}" \
+                    curl -s -X 'POST' -H "Authorization: Token ${defect}" \
                       'http://localhost:8082/api/v2/products/' \
                       -H 'accept: application/json' \
                       -H 'Content-Type: application/json' \
@@ -25,12 +26,14 @@ pipeline {
                     }'                    
 				  '''
             }
+            }
         }
         stage('Crearengagement') {
             steps {
+                withCredentials([string(credentialsId: 'defect', variable: 'defect')]) {
                 sh '''
-    				PROYECTO=`curl -X 'GET' 'http://localhost:8082/api/v2/products/' -H 'accept: application/json' -H "Authorization: Token ${DefectKey}" -s | jq '.results[] | select(.name=="demos") | .id'`
-        				curl -X 'POST' -H "Authorization: Token ${DefectKey}" \
+    				PROYECTO=`curl -X 'GET' 'http://localhost:8082/api/v2/products/' -H 'accept: application/json' -H "Authorization: Token ${defect}" -s | jq '.results[] | select(.name=="demos") | .id'`
+        				curl -X 'POST' -H "Authorization: Token ${defect}" \
     				  'http://localhost:8082/api/v2/engagements/' \
     				  -H 'accept: application/json' \
     				  -H 'Content-Type: application/json' \
@@ -44,6 +47,7 @@ pipeline {
     				  "product": "'"$PROYECTO"'"
     				}'
 				'''
+            }
             }
         }
         
