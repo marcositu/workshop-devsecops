@@ -1,5 +1,5 @@
 # workshop-decsecops
-La intención de la workshop es mostrar y orientar a los equipos de desarrollo, seguridad y devops (entre otros) que quieran comenzar en DevSecOps,  a segurar sus aplicaciones o bien a conocer un poco más acerca del desarrollo seguro, para esto, estaremos otorgando algunos tips e información que fuimos aprendiendo para armar un Pipeline DevSecOps básico. 
+La intención de la workshop es mostrar y orientar a los equipos de desarrollo, seguridad y devops (entre otros) que quieran comenzar en DevSecOps,  asegurar sus aplicaciones o bien a conocer un poco más acerca del desarrollo seguro, para esto, estaremos otorgando algunos tips e información que fuimos aprendiendo para armar un Pipeline DevSecOps básico. 
 
 Mediante la utilización de diferentes herramientas open-source, que permiten realizar análisis del tipo SAST y DAST de forma totalmente automatizada en la infraestructura de la organización Logrando así reducir los tiempos durante las diferentes etapas (desarrollo,prueba y producción), tiempos de análisis y trazabilidad en cada una de las iteraciones.
 
@@ -19,6 +19,9 @@ Mediante la utilización de diferentes herramientas open-source, que permiten re
 
 # defectdojo.md
 * Nos da los comandos para iniciar un container de DefectDojo, donde vamos a poder administrar diferentes SCANS de las herramientas que fuimos ejecutando.
+
+# owaspzap.md
+* Tiene el comando para descargar la imagen de docker de OWASP ZAP
 
 # crear_producto.sh
 * Crea un producto dentro de DefectDojo
