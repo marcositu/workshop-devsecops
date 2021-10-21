@@ -8,8 +8,8 @@ Mediante la utilización de diferentes herramientas open-source, que permiten re
 # docker.md
 * Nos da los comandos para instalar docker
 
-# jenkis.md
-* Este archivo contiene los comandos para instalar jenkis
+# jenknis.md
+* Este archivo contiene los comandos para instalar jenknis
 
 # dvwa.md
 * Este archivo contiene los comandos iniciar un contenedor de docker de de La aplicación web Damn Vulnerabl, la cual incluye intencionalmente vulnerabilidades de seguridad.
