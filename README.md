@@ -8,7 +8,7 @@ Mediante la utilización de diferentes herramientas open-source, que permiten re
 # docker.md
 * Nos da los comandos para instalar docker
 
-# jenknis.md
+# jenkins.md
 * Este archivo contiene los comandos para instalar jenknis
 
 # dvwa.md
