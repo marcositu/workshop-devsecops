@@ -3,7 +3,7 @@ La intención de la workshop es mostrar y orientar a los equipos de desarrollo, 
 
 Mediante la utilización de diferentes herramientas open-source, que permiten realizar análisis del tipo SAST y DAST de forma totalmente automatizada en la infraestructura de la organización Logrando así reducir los tiempos durante las diferentes etapas (desarrollo,prueba y producción), tiempos de análisis y trazabilidad en cada una de las iteraciones.
 
-La presentaciòn se encuentra en el siguiente link: https://slides.com/artssec/devsecops-sin-un-mango/
+La presentación se encuentra en el siguiente link: https://slides.com/artssec/devsecops-sin-un-mango/
 
 ## Todos estos comandos son para fines educativos y no para poner en producción en su trabajo, ya que no estan pensados para respetar las buenas prácticas
 
